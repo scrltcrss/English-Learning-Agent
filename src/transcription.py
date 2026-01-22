@@ -1,7 +1,7 @@
 import os
 import tempfile
 import whisper
-from .utils import measure_time
+from src.utils import measure_time
 
 
 @measure_time()

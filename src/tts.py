@@ -2,11 +2,13 @@ import io
 import numpy as np
 import soundfile as sf
 from kokoro import KPipeline
-from .utils import measure_time
+from src.utils import measure_time
 
 
 @measure_time()
-def generate_speech(text: str, kokoro_pipeline: KPipeline , voice: str = "af_heart") -> io.BytesIO:
+def generate_speech(
+    text: str, kokoro_pipeline: KPipeline, voice: str = "af_heart"
+) -> io.BytesIO:
     generator = kokoro_pipeline(text, voice=voice)
     audio_chunks: list[np.ndarray] = []
     for _, _, audio_chunk in generator:
