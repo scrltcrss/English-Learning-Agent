@@ -102,10 +102,32 @@ function playNextAudio() {
 }
 
 recordBtn.addEventListener("click", async () => {
-    if (!recording) { await startRecording(); }
-    else { await stopRecording(); }
-    recording = !recording;
-    recordBtn.classList.toggle("recording", recording);
+    if (!recording) { 
+        recordBtn.disabled = true;
+        try {
+            await startRecording(); 
+            recording = true;
+            recordBtn.classList.add("recording");
+        } catch (error) {
+            console.error("Error starting recording:", error);
+            statusEl.innerText = "Error accessing microphone. Please allow access.";
+        } finally {
+            recordBtn.disabled = false;
+        }
+    }
+    else { 
+        recordBtn.disabled = true;
+        try {
+            await stopRecording(); 
+            recording = false;
+            recordBtn.classList.remove("recording");
+        } catch (error) {
+            console.error("Error stopping recording:", error);
+            statusEl.innerText = "Error stopping recording.";
+        } finally {
+            recordBtn.disabled = false;
+        }
+    }
 });
 
 async function startRecording() {

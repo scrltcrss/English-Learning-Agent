@@ -8,11 +8,16 @@ dependencies = [
     "fastapi>=0.124.4",
     "hf-xet>=1.2.0",
     "kokoro>=0.9.4",
+    "mypy>=1.19.1",
     "openai-whisper>=20250625",
     "pip>=25.3",
     "pydantic-ai>=1.32.0",
+    "ruff>=0.14.13",
     "sounddevice>=0.5.3",
     "soundfile>=0.13.1",
     "torch>=2.9.1",
     "transformers>=4.57.3",
 ]
+
+[tool.mypy]
+ignore_missing_imports = true
